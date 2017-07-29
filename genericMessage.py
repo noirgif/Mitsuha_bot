@@ -28,4 +28,8 @@ class msg:
                                 disable_notification=self.content.get("disable_notification"),
                                 reply_to_message_id=self.content.get("reply_to_message_id"),
                                 reply_markup=self.content.get("reply_markup"))
+        # list: a list of messages
+        if (self._type == "list"):
+            for message in map(msg, self.content):
+                message.send(telebot)
         # todo: other formats

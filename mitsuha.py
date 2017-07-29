@@ -26,7 +26,12 @@ def gen_gay_messages(message):
     return list(map(genericMessage.msg,
             [("sticker",{"chat.id":message.chat.id,
                         "reply_to_message_id":message.message_id,
-                        "sticker":"CAADBQADXgADNYDMDnvpH22TGWSTAg"})
+                        "sticker":"CAADBQADXgADNYDMDnvpH22TGWSTAg"}),
+             ("list", [("text", {"chat.id":message.chat.id,
+                        "text":"不给"}),
+                        ("text", {"chat.id":message.chat.id,
+                                    "text":"我是女孩子"})
+                        ])
             ]))
 
 @bot.message_handler(commands=['start'])
@@ -34,7 +39,7 @@ def send_welcome(message):
     # using the global bot variable
     send_mua(bot, message)
 
-@bot.message_handler(regexp=r"(三爷.*给)")
+@bot.message_handler(regexp=r"(三爷.*给)|(给.*三爷)")
 def gayer(message):
     print(message.chat.id, message.text)
     send_gay(bot, message)
