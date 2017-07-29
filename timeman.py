@@ -14,8 +14,10 @@ localtz = pytz.timezone(json.load(open('config/misc.json'))["timezone"])
 ten_secs = timedelta(0, 10, 0)
 a_day = timedelta(1, 0, 0)
 a_week = timedelta(7, 0, 0)
-# five o' clock
-foc = datetime(year=1970, month=1, day=1, hour=5, minute=0)
+# 5am
+time_5am = datetime(year=1970, month=1, day=1, hour=5, minute=0)
+# 11pm
+time_11pm = datetime(year=1970, month=1, day=1, hour=23, minute=0)
 
 # get local time, in datetime.datetime
 def getLocalTime():
