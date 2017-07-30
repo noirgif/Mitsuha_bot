@@ -6,6 +6,8 @@ Requirements:
 
     pyTelegramBotAPI
 
+    pytz
+
     ...
 
 How-to:

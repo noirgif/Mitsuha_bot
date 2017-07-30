@@ -4,4 +4,4 @@
 import random
 
 def choice(iterable):
-    return iterable[random.randint(0, len(iterable))]
+    return iterable[random.randint(0, len(iterable) - 1)]
