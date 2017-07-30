@@ -30,7 +30,10 @@ def gen_gay_messages(message):
                     "text":"不给"}),
                 ("text", {"chat.id":message.chat.id,
                     "text":"我是女孩子"})
-                       ])
+                       ]),
+            ("text", {"chat.id": message.chat.id,
+                    "reply_to_message_id": message.message_id,
+                    "text":"泥奏凯"})
             ]))
 
 #sendmua: reply with mua
