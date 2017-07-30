@@ -22,9 +22,9 @@ def gayer(message):
 # reply to /start
 @bot.message_handler(commands=['start'])
 # reply to replies to me
-@bot.message_handler(regexp=r"😘",
-    func=lambda msg: msg.reply_to_message and msg.reply_to_message.from_user == bot.getMe())
-def gay_reply(message):
+@bot.message_handler(regexp=r"😘|(mua)|(可爱的)")
+    #func=lambda msg: msg.reply_to_message and msg.reply_to_message.from_user.id == bot.get_me().id)
+def mua_reply(message):
     send_mua(bot, message)
 
 @bot.message_handler(func=lambda x: True)

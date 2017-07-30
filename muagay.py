@@ -47,6 +47,9 @@ def get_nickname(message):
         return nicklist[message.from_user.id]
     else:
         idlist[message.from_user.username] = message.from_user.id
-        json.dump(idlist, open('data/idlist.json', 'wb'))
+        filex = open('data/idlist.json','wb')
+        json.dump(idlist, filex)
+        filex.close()
+        print(message.from_user.id)
     # do not reply if the nickname is unknown
         return None

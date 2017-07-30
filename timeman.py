@@ -27,11 +27,15 @@ def getLocalTime():
 def timedRun(timeCheck, event):
     if timeCheck(getLocalTime()):
         event()
+        return True
+    return False
 
 # run if the duration condition is satisfied
 def durRun(durCheck, lastTime, event):
     if durCheck(getLocalTime(), lastTime):
         event()
+        return True
+    return False
 
 # more than the specified period
 # :param timedelta period
@@ -41,4 +45,10 @@ def mtsp(period):
 # at a specific time of the day
 # :param datetime time
 def at_tod(time):
-    return lambda now: time.hour == now.hour and time.minute == now.minute
+    return lambda now: (time.hour, time.minute) == (now.hour, now.minute)
+
+# whether on the specified day
+# :param datetime time
+def at_day(time):
+    nowtime = getLocalTime()
+    return (nowtime.year, nowtime.month, nowtime.day) == (time.year, time.month, time.day)
