@@ -1,5 +1,5 @@
 import genericMessage
-import secrets
+import usrandom as ur
 import json
 import random
 
@@ -35,11 +35,11 @@ def gen_gay_messages(message):
 
 #sendmua: reply with mua
 def send_mua(bot, message):
-    secrets.choice(gen_mua_messages(message)).send(bot)
+    ur.choice(gen_mua_messages(message)).send(bot)
 
 #sendgay: reply to gay messages
 def send_gay(bot, message):
-    secrets.choice(gen_gay_messages(message)).send(bot)
+    ur.choice(gen_gay_messages(message)).send(bot)
 
 def get_nickname(message):
     # since the user id is unknown, the first name is used
