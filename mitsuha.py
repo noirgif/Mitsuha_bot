@@ -3,6 +3,9 @@ import json
 import random
 from muagay import *
 import ltns
+import zaowan as zw
+import os
+import time
 
 # get token
 TokenFile = open('config/token.json')
@@ -10,9 +13,6 @@ Token = json.load(TokenFile)["TOKEN"]
 TokenFile.close()
 
 bot = telebot.TeleBot(Token)
-def send_welcome(message):
-    # using the global bot variable
-    send_mua(bot, message)
 
 # gay reply
 @bot.message_handler(regexp=r"(三爷.*给)|(给.*三爷)")
@@ -32,4 +32,25 @@ def mua_reply(message):
 def ltns_greetings(message):
     send_mua(bot, message)    
 
-bot.polling()
+tasklist = {}
+
+@bot.message_handler(commands=['/startzaowan'])
+def start_zaowan(message):
+    if message.chat.id in tasklist:
+        bot.reply_to(message, "Error 0x524523: Tasks already scheduled!")
+    else:
+        tasklist[message.chat.id] = (zw.Zao(bot, message), zw.Wan(bot, message))
+        bot.reply_to(message, "Done!")
+        zw.poll()
+
+@bot.message_handler(commands=['/stopzaowan'])
+def stop_zaowan(message):
+    if message.chat.id not in tasklist:
+        bot.reply_to(message, "Error 0x524524: No schedule now!")
+    else:
+        for task in tasklist[message.chat.id]:
+            task.destroy()
+        bot.reply_to(message, "Done!")
+
+
+bot.polling(none_stop= True)
